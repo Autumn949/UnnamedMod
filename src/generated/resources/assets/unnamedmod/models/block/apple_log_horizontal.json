@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/cube_column",
+  "parent": "minecraft:block/cube_column_horizontal",
   "textures": {
     "side": "unnamedmod:block/apple_log",
     "end": "unnamedmod:block/apple_log_top"
