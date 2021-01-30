@@ -19,7 +19,14 @@ public final class BlockStateTable {
     public static void registerBlockStates(BiConsumer<Block, IBlockStateGen> c) {
         consumer = c;
 
+        //TODO: Add model generator for gates and add wooden fence gate here and to ItemModelTable
         register(ModBlocks.APPLE_TREE_LOG, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_top"), name(block, "block/%s"))));
+        register(ModBlocks.APPLE_LEAVES , block -> simple(name(block,"block/%s"),leaves(name(block, "block/%s"))));
+        register(ModBlocks.APPLE_PLANKS, block-> simple(name(block,"block/%s"),cubeAll(name(block, "block/%s"))));
+        register(ModBlocks.APPLE_SLAB, block-> woodenSlab(name(block,"block/%s","_slab"),name(block,"block/apple_planks"),1));
+        register(ModBlocks.APPLE_FENCE, block-> fence(name(block,"block/%s"),name(block,"block/apple_planks")));
+        register(ModBlocks.APPLE_STAIRS, block -> woodenStairs(name(block,"block/%s","_stairs"),name(block,"block/apple_planks"),1));
+
     }
 
     private static IBlockStateGen simple(String name, IModelGen model) {
@@ -262,6 +269,8 @@ public final class BlockStateTable {
                                     .variant("type=top", hi)
                                     .variant("type=double", dbl);
     }
+
+
 
     private static IBlockStateGen woodenStairs(String modelName, String name, int... weights) {
         ModelInfo[] innerL = new ModelInfo[weights.length];

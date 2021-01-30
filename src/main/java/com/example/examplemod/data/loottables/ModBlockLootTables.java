@@ -4,6 +4,7 @@ import com.example.examplemod.common.UnnamedMod;
 import com.example.examplemod.common.blocks.ModBlocks;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.DoublePlantBlock;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
@@ -35,11 +36,23 @@ public class ModBlockLootTables extends BlockLootTables {
     private static final ILootCondition.IBuilder NOT_SILK_TOUCH = SILK_TOUCH.inverted();
     private static final ILootCondition.IBuilder SILK_TOUCH_OR_SHEARS = SHEARS.alternative(SILK_TOUCH);
     private static final ILootCondition.IBuilder NOT_SILK_TOUCH_OR_SHEARS = SILK_TOUCH_OR_SHEARS.inverted();
+    private static final float[] DEFAULT_SAPLING_DROP_RATES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
 
 
     @Override
     protected void addTables() {
+
         registerDropSelfLootTable(ModBlocks.APPLE_TREE_LOG);
+        registerLootTable(ModBlocks.APPLE_LEAVES, block-> droppingWithChancesAndSticks(block, Blocks.OAK_SAPLING,DEFAULT_SAPLING_DROP_RATES));
+        registerDropSelfLootTable(ModBlocks.APPLE_PLANKS);
+        registerLootTable(ModBlocks.APPLE_SLAB, block ->  droppingSlab(block));
+        registerDropSelfLootTable(ModBlocks.APPLE_FENCE);
+        registerDropSelfLootTable(ModBlocks.APPLE_FENCE_GATE);
+        registerDropSelfLootTable(ModBlocks.APPLE_STAIRS);
+        registerDropSelfLootTable(ModBlocks.APPLE_DOOR);
+        registerDropSelfLootTable(ModBlocks.APPLE_TRAP_DOOR);
+        //TODO:UPDATE TO DROP APPLE WHEN FULLY GROWN ROTTEN APPLE WHEN OLD AND GROWTH STAGE WHEN SILKED
+        registerSilkTouch(ModBlocks.APPLE);
     }
 
 

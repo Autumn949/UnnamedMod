@@ -10,6 +10,7 @@ import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -46,7 +47,6 @@ public class ModStateModelProvider implements IDataProvider {
             stategen.getModels(blockModelData::put);
         });
         ItemModelTable.registerItemModels(itemModelData::put);
-
         Path path = datagen.getOutputFolder();
         blockStateData.forEach((block, state) -> {
             ResourceLocation id = block.getRegistryName();

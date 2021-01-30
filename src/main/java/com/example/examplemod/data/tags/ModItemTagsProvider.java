@@ -27,6 +27,8 @@ public class ModItemTagsProvider extends TagsProvider<Item> {
     @Override
     protected void registerTags() {
         copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
+        copy(BlockTags.LEAVES,ItemTags.LEAVES);
+        copy(BlockTags.WOODEN_FENCES,ItemTags.WOODEN_FENCES);
     }
 
 

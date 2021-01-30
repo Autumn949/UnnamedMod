@@ -59,6 +59,10 @@ public class InheritingModelGen implements IModelGen {
         return new InheritingModelGen("block/cube_all")
                    .texture("all", texture);
     }
+    public static InheritingModelGen leaves(String texture) {
+        return new InheritingModelGen("block/leaves")
+                .texture("all", texture);
+    }
 
     public static InheritingModelGen slab(String texture) {
         return new InheritingModelGen("block/slab")

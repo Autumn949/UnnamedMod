@@ -12,6 +12,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.nio.file.Path;
+import java.util.logging.LogManager;
 
 public class ModBlockTagsProvider extends TagsProvider<Block> {
     @SuppressWarnings("deprecation") // We need Registry.BLOCK. Sorry Forge...
@@ -21,8 +22,10 @@ public class ModBlockTagsProvider extends TagsProvider<Block> {
 
     @Override
     protected void registerTags() {
-        getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN)
-            .add(ModBlocks.APPLE_TREE_LOG);
+        getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).add(ModBlocks.APPLE_TREE_LOG);
+        getOrCreateTagBuilder(BlockTags.LEAVES).add(ModBlocks.APPLE_LEAVES);
+        getOrCreateTagBuilder(BlockTags.WOODEN_FENCES).add(ModBlocks.APPLE_FENCE);
+        getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(ModBlocks.APPLE_FENCE_GATE);
     }
 
     protected ITag.Builder getBuilder(ITag.INamedTag<Block> namedTag) {
