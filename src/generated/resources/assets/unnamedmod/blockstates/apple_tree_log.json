@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=z": {
+      "model": "unnamedmod:block/apple_tree_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "unnamedmod:block/apple_tree_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "unnamedmod:block/apple_tree_log"
+    }
+  }
+}

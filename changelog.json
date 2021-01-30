@@ -1,0 +1,14 @@
+{
+  "version": {
+    "number": "0.1-alpha.0",
+    "name": "First release",
+    "minecraft": "1.16.5",
+    "stable": false
+  },
+  "description": [
+    "The first release of unnamed mod."
+  ],
+  "changelog": [
+    "Released the mod"
+  ]
+}
