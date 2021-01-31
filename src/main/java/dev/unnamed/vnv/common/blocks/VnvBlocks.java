@@ -38,7 +38,7 @@ public abstract class VnvBlocks {
     public static final Block APPLE = apple("apple");
     public static final Block MUSHROOM_FAN = mushroomFan("mushroom_fan");
 
-    public static final Block MUD = mud("mud");
+    public static final MudBlock MUD = mud("mud");
 
 
     //
@@ -181,8 +181,8 @@ public abstract class VnvBlocks {
         ));
     }
 
-    private static Block mud(String id) {
-        return block(id, new Block(
+    private static MudBlock mud(String id) {
+        return block(id, new MudBlock(
             AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT)
                                     .sound(SoundType.GROUND)
                                     .hardnessAndResistance(1)

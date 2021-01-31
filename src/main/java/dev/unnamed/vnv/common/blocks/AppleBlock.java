@@ -1,9 +1,6 @@
 package dev.unnamed.vnv.common.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FallingBlock;
-import net.minecraft.block.IGrowable;
+import net.minecraft.block.*;
 import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -95,7 +92,7 @@ public class AppleBlock extends FallingBlock implements IGrowable {
                     ForgeHooks.onCropsGrowPost(world, pos, state);
                 } else {
                     // TODO: WHAT?!
-                    world.destroyBlock(pos, false);
+                    world.setBlockState(pos, Blocks.AIR.getDefaultState());
                 }
             }
 
