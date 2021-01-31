@@ -98,6 +98,7 @@ public abstract class VnvBlocks {
                                     .sound(SoundType.PLANT)
                                     .hardnessAndResistance(0.2f)
                                     .harvestTool(ToolType.HOE)
+                                    .tickRandomly()
                                     .nonOpaque()
         ));
     }
@@ -154,6 +155,7 @@ public abstract class VnvBlocks {
                                     .sound(SoundType.WET_GRASS)
                                     .hardnessAndResistance(0.2f)
                                     .harvestTool(ToolType.HOE)
+                                    .tickRandomly()
                                     .nonOpaque()
         ));
 

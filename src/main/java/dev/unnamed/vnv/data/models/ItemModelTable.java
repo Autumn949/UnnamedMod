@@ -1,6 +1,7 @@
 package dev.unnamed.vnv.data.models;
 
 import dev.unnamed.vnv.common.blocks.VnvBlocks;
+import dev.unnamed.vnv.common.items.VnvItems;
 import dev.unnamed.vnv.data.models.modelgen.IModelGen;
 import net.minecraft.item.Item;
 import net.minecraft.util.IItemProvider;
@@ -26,8 +27,11 @@ public final class ItemModelTable {
         register(VnvBlocks.APPLE_TREE_STAIRS, item -> inherit(name(item, "block/%s")));
 
         register(VnvBlocks.APPLE_TREE_FENCE, item -> fenceInventory(name(item, "block/%s_planks", "_fence")));
+        register(VnvBlocks.APPLE_TREE_DOOR, item -> generated(name(item, "item/%s")));
 
         register(VnvBlocks.MUD, item -> inherit(name(item, "block/%s")));
+
+        register(VnvItems.ROTTEN_APPLE, item -> generated(name(item, "item/%s")));
     }
 
 

@@ -32,14 +32,13 @@ import java.util.Random;
 public class AppleBlock extends FallingBlock implements IGrowable {
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
     private static final VoxelShape[] SHAPE_BY_AGE = {
-        Block.makeCuboidShape(0, 0, 0, 16, 2, 16),
-        Block.makeCuboidShape(0, 0, 0, 16, 4, 16),
-        Block.makeCuboidShape(0, 0, 0, 16, 6, 16),
-        Block.makeCuboidShape(0, 0, 0, 16, 8, 16),
-        Block.makeCuboidShape(0, 0, 0, 16, 10, 16),
-        Block.makeCuboidShape(0, 0, 0, 16, 12, 16),
-        Block.makeCuboidShape(0, 0, 0, 16, 14, 16),
-        Block.makeCuboidShape(0, 0, 0, 16, 16, 16)
+        makeAppleShape(2, 2, false),
+        makeAppleShape(4, 5, false),
+        makeAppleShape(6, 7, false),
+        makeAppleShape(6, 8, true),
+        makeAppleShape(6, 8, true),
+        makeAppleShape(6, 8, true),
+        makeAppleShape(6, 8, true)
     };
     public static final BooleanProperty PERSISTENT = BooleanProperty.create("persistent");
 
@@ -49,6 +48,11 @@ public class AppleBlock extends FallingBlock implements IGrowable {
 
         setDefaultState(stateContainer.getBaseState().with(AGE, 0));
         setDefaultState(stateContainer.getBaseState().with(PERSISTENT, false));
+    }
+
+    private static VoxelShape makeAppleShape(double size, double len, boolean ground) {
+        double s2 = size / 2;
+        return makeCuboidShape(8 - s2, ground ? 0 : 16 - len, 8 - s2, 8 + s2, ground ? len : 16, 8 + s2);
     }
 
     @Override
