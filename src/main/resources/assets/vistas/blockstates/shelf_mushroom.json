@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "vistas:block/shelf_mushroom"
+    },
+    "facing=west": {
+      "model": "vistas:block/shelf_mushroom"
+    },
+    "facing=north": {
+      "model": "vistas:block/shelf_mushroom"
+    },
+    "facing=south": {
+      "model": "vistas:block/shelf_mushroom"
+    }
+  }
+}

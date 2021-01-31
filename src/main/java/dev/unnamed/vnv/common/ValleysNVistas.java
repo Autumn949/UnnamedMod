@@ -2,6 +2,7 @@ package dev.unnamed.vnv.common;
 
 import dev.unnamed.vnv.EnvConstant;
 import dev.unnamed.vnv.common.blocks.VnvBlocks;
+import dev.unnamed.vnv.common.entities.VnvEntities;
 import dev.unnamed.vnv.common.items.VnvItems;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -30,6 +31,7 @@ public abstract class ValleysNVistas {
     public void init() {
         VnvBlocks.setup();
         VnvItems.setup();
+        VnvEntities.setup();
     }
 
     public void postInit() {

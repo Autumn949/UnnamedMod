@@ -15,6 +15,11 @@ public class FloweringLeavesBlock extends LeavesBlock {
     }
 
     @Override
+    public boolean ticksRandomly(BlockState p_149653_1_) {
+        return true;
+    }
+
+    @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (world.isAreaLoaded(pos, 1)) {
             if (world.getBlockState(pos.down()).getBlock() == Blocks.AIR) {

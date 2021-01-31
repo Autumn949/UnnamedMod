@@ -6,9 +6,13 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -36,7 +40,7 @@ public abstract class VnvBlocks {
     public static final Block APPLE_TREE_TRAPDOOR = trapDoor("apple_tree_trapdoor", MaterialColor.WOOD);
 
     public static final Block APPLE = apple("apple");
-    public static final Block MUSHROOM_FAN = mushroomFan("mushroom_fan");
+    public static final Block MUSHROOM_FAN = mushroomFan("shelf_mushroom");
 
     public static final Block MUD_DRY = mud("mud_dry");
     public static final Block MUD_WET = mudwet("mud_wet");
@@ -61,6 +65,7 @@ public abstract class VnvBlocks {
             APPLE_TREE_LEAVES,
             FLOWERING_APPLE_TREE_LEAVES
         );
+        RenderTypeLookup.setRenderLayer(MUSHROOM_FAN, RenderType.getCutout());
     }
 
 

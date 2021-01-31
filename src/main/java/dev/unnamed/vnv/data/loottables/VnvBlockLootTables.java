@@ -60,7 +60,7 @@ public class VnvBlockLootTables extends BlockLootTables {
 
         registerDropSelfLootTable(VnvBlocks.MUD_WET);
         registerDropSelfLootTable(VnvBlocks.MUD_DRY);
-        registerDropSelfLootTable(VnvBlocks.MUSHROOM_FAN);
+        registerDropping(VnvBlocks.MUSHROOM_FAN, Items.BROWN_MUSHROOM);
     }
 
 

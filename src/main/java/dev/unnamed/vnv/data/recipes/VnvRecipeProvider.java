@@ -27,6 +27,8 @@ public class VnvRecipeProvider extends RecipeProvider {
         fenceGate("apple_tree/fence_gate_from_planks_sticks", VnvBlocks.APPLE_TREE_PLANKS, VnvBlocks.APPLE_TREE_FENCE_GATE, 1);
         generic2x3("apple_tree/door_from_planks", VnvBlocks.APPLE_TREE_PLANKS, VnvBlocks.APPLE_TREE_DOOR, 3);
         generic2x2("apple_tree/trapdoor_from_planks", VnvBlocks.APPLE_TREE_PLANKS, VnvBlocks.APPLE_TREE_TRAPDOOR, 2);
+
+        smelting("mud_block/bake",VnvBlocks.MUD_WET,VnvBlocks.MUD_DRY,0);
     }
 
     private void generic2x2(String id, IItemProvider from, IItemProvider to, int count) {
