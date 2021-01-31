@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "unnamedmod:apple_leaves"
+    "vistas:apple_tree_leaves",
+    "vistas:flowering_apple_tree_leaves"
   ]
 }

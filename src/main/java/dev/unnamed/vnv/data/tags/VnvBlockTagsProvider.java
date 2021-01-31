@@ -1,6 +1,6 @@
 package dev.unnamed.vnv.data.tags;
 
-import dev.unnamed.vnv.common.Vnv;
+import dev.unnamed.vnv.common.ValleysNVistas;
 import dev.unnamed.vnv.common.blocks.VnvBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
@@ -16,15 +16,38 @@ import java.nio.file.Path;
 public class VnvBlockTagsProvider extends TagsProvider<Block> {
     @SuppressWarnings("deprecation") // We need Registry.BLOCK. Sorry Forge...
     public VnvBlockTagsProvider(DataGenerator gen, ExistingFileHelper helper) {
-        super(gen, Registry.BLOCK, Vnv.ID, helper);
+        super(gen, Registry.BLOCK, ValleysNVistas.ID, helper);
     }
 
     @Override
     protected void registerTags() {
-        getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).add(VnvBlocks.APPLE_TREE_LOG);
-        getOrCreateTagBuilder(BlockTags.LEAVES).add(VnvBlocks.APPLE_TREE_LEAVES);
-        getOrCreateTagBuilder(BlockTags.WOODEN_FENCES).add(VnvBlocks.APPLE_TREE_FENCE);
-        getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(VnvBlocks.APPLE_TREE_FENCE_GATE);
+        getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN)
+            .add(VnvBlocks.APPLE_TREE_LOG);
+
+        getOrCreateTagBuilder(BlockTags.LEAVES)
+            .add(VnvBlocks.APPLE_TREE_LEAVES)
+            .add(VnvBlocks.FLOWERING_APPLE_TREE_LEAVES);
+
+        getOrCreateTagBuilder(BlockTags.PLANKS)
+            .add(VnvBlocks.APPLE_TREE_PLANKS);
+
+        getOrCreateTagBuilder(BlockTags.WOODEN_SLABS)
+            .add(VnvBlocks.APPLE_TREE_SLAB);
+
+        getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS)
+            .add(VnvBlocks.APPLE_TREE_STAIRS);
+
+        getOrCreateTagBuilder(BlockTags.WOODEN_DOORS)
+            .add(VnvBlocks.APPLE_TREE_DOOR);
+
+        getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS)
+            .add(VnvBlocks.APPLE_TREE_TRAPDOOR);
+
+        getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
+            .add(VnvBlocks.APPLE_TREE_FENCE);
+
+        getOrCreateTagBuilder(BlockTags.FENCE_GATES)
+            .add(VnvBlocks.APPLE_TREE_FENCE_GATE);
     }
 
     protected ITag.Builder getBuilder(ITag.INamedTag<Block> namedTag) {

@@ -1,6 +1,6 @@
 package dev.unnamed.vnv.common.items;
 
-import dev.unnamed.vnv.common.Vnv;
+import dev.unnamed.vnv.common.ValleysNVistas;
 import dev.unnamed.vnv.common.blocks.VnvBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.ComposterBlock;
@@ -32,8 +32,8 @@ public abstract class VnvItems {
     public static final Item APPLE_TREE_FENCE = block(VnvBlocks.APPLE_TREE_FENCE, ItemGroup.DECORATIONS);
     public static final Item APPLE_TREE_FENCE_GATE = block(VnvBlocks.APPLE_TREE_FENCE_GATE, ItemGroup.REDSTONE);
 
-    public static final Item APPLE_TREE_DOOR = block(VnvBlocks.APPLE_DOOR, ItemGroup.REDSTONE);
-    public static final Item APPLE_TREE_TRAP_DOOR = block(VnvBlocks.APPLE_TRAP_DOOR, ItemGroup.REDSTONE);
+    public static final Item APPLE_TREE_DOOR = block(VnvBlocks.APPLE_TREE_DOOR, ItemGroup.REDSTONE);
+    public static final Item APPLE_TREE_TRAPDOOR = block(VnvBlocks.APPLE_TREE_TRAPDOOR, ItemGroup.REDSTONE);
 
     public static final Item MUD = block(VnvBlocks.MUD, ItemGroup.BUILDING_BLOCKS);
     public static final Item MUSHROOM_FAN = block(VnvBlocks.MUSHROOM_FAN, ItemGroup.DECORATIONS);
@@ -74,7 +74,7 @@ public abstract class VnvItems {
     //
 
     private static <T extends Item> T item(String id, T item) {
-        item.setRegistryName(Vnv.id(id));
+        item.setRegistryName(ValleysNVistas.id(id));
         REGISTRY.add(item);
         return item;
     }

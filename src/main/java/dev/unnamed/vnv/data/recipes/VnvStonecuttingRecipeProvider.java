@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.mojang.datafixers.util.Pair;
-import dev.unnamed.vnv.common.Vnv;
+import dev.unnamed.vnv.common.ValleysNVistas;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
@@ -95,7 +95,7 @@ public class VnvStonecuttingRecipeProvider extends RecipeProvider {
                 if (!flushed.contains(name)) {
                     SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(from), to, count)
                                            .addCriterion(criterionName(from), hasItem(from))
-                                           .build(consumer, Vnv.id(name));
+                                           .build(consumer, ValleysNVistas.id(name));
                     flushed.add(name);
                 }
             }

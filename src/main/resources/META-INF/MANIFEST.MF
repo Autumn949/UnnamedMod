@@ -1,1 +1,1 @@
-MixinConnector: MixinConnector
+MixinConnector: dev.unnamed.vnv.core.MixinConnector

@@ -1,8 +1,8 @@
 {
   "required": true,
-  "package": "com.example.examplemod.core.mixin",
+  "package": "dev.unnamed.vnv.core.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "unnamedmod.refmap.json",
+  "refmap": "@env{mod.id}.refmap.json",
   "mixins": [
   ],
   "minVersion": "0.8.1"

@@ -1,6 +1,6 @@
 package dev.unnamed.vnv.data.loottables;
 
-import dev.unnamed.vnv.common.Vnv;
+import dev.unnamed.vnv.common.ValleysNVistas;
 import dev.unnamed.vnv.common.blocks.VnvBlocks;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.block.Block;
@@ -41,30 +41,25 @@ public class VnvBlockLootTables extends BlockLootTables {
 
     @Override
     protected void addTables() {
-
-        //
-        //APPLE BLOCKS
-        //
         registerDropSelfLootTable(VnvBlocks.APPLE_TREE_LOG);
         registerLootTable(VnvBlocks.APPLE_TREE_LEAVES, block -> droppingWithChancesAndSticks(block, Blocks.OAK_SAPLING, DEFAULT_SAPLING_DROP_RATES));
+        registerLootTable(VnvBlocks.FLOWERING_APPLE_TREE_LEAVES, block -> droppingWithChancesAndSticks(block, Blocks.OAK_SAPLING, DEFAULT_SAPLING_DROP_RATES));
+
         registerDropSelfLootTable(VnvBlocks.APPLE_TREE_PLANKS);
-        registerLootTable(VnvBlocks.APPLE_TREE_SLAB, block -> droppingSlab(block));
+        registerLootTable(VnvBlocks.APPLE_TREE_SLAB, BlockLootTables::droppingSlab);
+        registerDropSelfLootTable(VnvBlocks.APPLE_TREE_STAIRS);
+
         registerDropSelfLootTable(VnvBlocks.APPLE_TREE_FENCE);
         registerDropSelfLootTable(VnvBlocks.APPLE_TREE_FENCE_GATE);
-        registerDropSelfLootTable(VnvBlocks.APPLE_TREE_STAIRS);
-        registerDropSelfLootTable(VnvBlocks.APPLE_DOOR);
-        registerDropSelfLootTable(VnvBlocks.APPLE_TRAP_DOOR);
+        registerDropSelfLootTable(VnvBlocks.APPLE_TREE_DOOR);
+        registerDropSelfLootTable(VnvBlocks.APPLE_TREE_TRAPDOOR);
 
 
-        //TODO:UPDATE TO DROP APPLE WHEN FULLY GROWN ROTTEN APPLE WHEN OLD AND GROWTH STAGE WHEN SILKED
-
+        // TODO: UPDATE TO DROP APPLE WHEN FULLY GROWN ROTTEN APPLE WHEN OLD AND GROWTH STAGE WHEN SILKED
         registerSilkTouch(VnvBlocks.APPLE);
 
-
-        //
-        //FOREST BLOCK
-        //
         registerDropSelfLootTable(VnvBlocks.MUD);
+        registerDropSelfLootTable(VnvBlocks.MUSHROOM_FAN);
     }
 
 
@@ -148,7 +143,7 @@ public class VnvBlockLootTables extends BlockLootTables {
     @Override
     protected Iterable<Block> getKnownBlocks() {
         return StreamSupport.stream(ForgeRegistries.BLOCKS.spliterator(), false)
-                            .filter(block -> Objects.requireNonNull(block.getRegistryName()).getNamespace().equals(Vnv.ID))
+                            .filter(block -> Objects.requireNonNull(block.getRegistryName()).getNamespace().equals(ValleysNVistas.ID))
                             .collect(Collectors.toList());
     }
 }

@@ -3,6 +3,7 @@ package dev.unnamed.vnv.data.models.modelgen;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
+import dev.unnamed.vnv.common.ValleysNVistas;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
@@ -59,9 +60,16 @@ public class InheritingModelGen implements IModelGen {
         return new InheritingModelGen("block/cube_all")
                    .texture("all", texture);
     }
+
     public static InheritingModelGen leaves(String texture) {
         return new InheritingModelGen("block/leaves")
-                .texture("all", texture);
+                   .texture("all", texture);
+    }
+
+    public static InheritingModelGen layeredLeaves(String texture, String overlay) {
+        return new InheritingModelGen(ValleysNVistas.ID + ":block/layered_leaves")
+                   .texture("all", texture)
+                   .texture("overlay", overlay);
     }
 
     public static InheritingModelGen slab(String texture) {
@@ -99,29 +107,8 @@ public class InheritingModelGen implements IModelGen {
                    .texture("side", texture);
     }
 
-    public static InheritingModelGen step(String texture) {
-        return new InheritingModelGen("lushed:block/step")
-                   .texture("bottom", texture)
-                   .texture("top", texture)
-                   .texture("side", texture);
-    }
-
-    public static InheritingModelGen stepInner(String texture) {
-        return new InheritingModelGen("lushed:block/inner_step")
-                   .texture("bottom", texture)
-                   .texture("top", texture)
-                   .texture("side", texture);
-    }
-
-    public static InheritingModelGen stepOuter(String texture) {
-        return new InheritingModelGen("lushed:block/outer_step")
-                   .texture("bottom", texture)
-                   .texture("top", texture)
-                   .texture("side", texture);
-    }
-
     public static InheritingModelGen flat(String texture) {
-        return new InheritingModelGen("lushed:block/flat")
+        return new InheritingModelGen(ValleysNVistas.ID + ":block/flat")
                    .texture("texture", texture);
     }
 
@@ -190,7 +177,7 @@ public class InheritingModelGen implements IModelGen {
     }
 
     public static InheritingModelGen grassBlock(String top, String side, String bottom, String overlay) {
-        return new InheritingModelGen("lushed:block/grass_block")
+        return new InheritingModelGen(ValleysNVistas.ID + ":block/grass_block")
                    .texture("top", top)
                    .texture("bottom", bottom)
                    .texture("side", side)
@@ -198,7 +185,7 @@ public class InheritingModelGen implements IModelGen {
     }
 
     public static InheritingModelGen farmlandBlock(String top, String side, String bottom) {
-        return new InheritingModelGen("lushed:block/farmland_block")
+        return new InheritingModelGen(ValleysNVistas.ID + ":block/farmland_block")
                    .texture("top", top)
                    .texture("bottom", bottom)
                    .texture("side", side);

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "vistas:block/apple_tree_planks",
+    "top": "vistas:block/apple_tree_planks",
+    "side": "vistas:block/apple_tree_planks"
+  }
+}

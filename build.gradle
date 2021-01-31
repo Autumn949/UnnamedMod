@@ -8,75 +8,112 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
-        classpath group: 'net.shadew', name: 'modutil', version: '1.0-beta.10'
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+
+        classpath 'net.shadew.modutil:shade:1.0.2'
+        classpath 'net.shadew.modutil:inject-constants:1.0.2'
+        classpath 'net.shadew.modutil:changelog:1.0.2'
     }
 
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'net.shadew.modutil'
+apply plugin: 'net.shadew.modutil.shade'
+apply plugin: 'net.shadew.modutil.inject-constants'
+apply plugin: 'net.shadew.modutil.changelog'
 apply plugin: 'idea'
 apply plugin: 'maven-publish'
 
-version = '0.1-alpha.0'
-group = 'unnameddev'
-archivesBaseName = 'unnamedmod'
+def mod = [
+    id     : findProperty("mod.id"),
+    version: findProperty("mod.version"),
+    group  : findProperty("mod.group"),
+    root   : findProperty("mod.root")
+]
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+def env = [
+    mappingsChannel : findProperty("env.mappings.channel"),
+    mappingsVersion : findProperty("env.mappings.version"),
+    minecraftVersion: findProperty("env.minecraft.version"),
+    forgeVersion    : findProperty("env.forge.version"),
+    utilVersion     : findProperty("env.util.version"),
+    buildTimestamp  : new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+]
+
+version = "$mod.version"
+group = "$mod.group"
+archivesBaseName = "$mod.id"
+
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+
+shading {
+    shade('net.shadew.util', "${mod.root}.internal.net.shadew.util")
+}
+
+constants {
+    annotation "${mod.root}.EnvConstant"
+    pattern(/.*\.(json|toml|mcmeta)$/, /@env\{([a-zA-Z0-9.\-_$]+)\}/)
+
+    constantsFromProperties()
+}
+
+changelog {
+    updateJson file("$projectDir/versioninfo/update.json")
+    markdownChangelog file("$projectDir/versioninfo/changelog.md")
+
+    changelogJson file("$projectDir/changelog.json")
+}
+
 
 minecraft {
-    mappings channel: 'snapshot', version: '20201003-mixed-1.16.3'
+    mappings channel: "${env.mappingsChannel}",
+             version: "${env.mappingsVersion}"
 
     runs {
         client {
-            workingDirectory project.file('run')
+            workingDirectory file('run')
 
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'info'
 
             mods {
-                unnamedmod {
-                    source sourceSets.main
-                }
+                maybeCreate("${mod.id}").source((SourceSet) sourceSets.main)
             }
         }
 
         server {
-            workingDirectory project.file('run')
+            workingDirectory file('run')
 
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'info'
 
             mods {
-                unnamedmod {
-                    source sourceSets.main
-                }
+                maybeCreate("${mod.id}").source((SourceSet) sourceSets.main)
             }
         }
 
         data {
-            workingDirectory project.file('run')
+            workingDirectory file('run')
 
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'info'
 
-            args '--mod', 'unnamedmod', '--all',
+            args '--mod', mod.id + '', '--all',
                  '--output', file('src/generated/resources/'),
                  '--existing', file('src/main/resources/')
 
             mods {
-                unnamedmod {
-                    source sourceSets.main
-                }
+                maybeCreate("${mod.id}").source((SourceSet) sourceSets.main)
             }
         }
     }
 }
 
 mixin {
-    add sourceSets.main, "unnamedmod.refmap.json"
+    add sourceSets.main, "${mod.id}.refmap.json"
 }
 
 repositories {
@@ -101,11 +138,15 @@ configurations {
     compile.extendsFrom(embed)
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+}
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.0.9'
-    embed "net.shadew:shwutil:1.5.0"
+    minecraft "net.minecraftforge:forge:${env.minecraftVersion}-${env.forgeVersion}"
+    embed("net.shadew:shwutil:${env.utilVersion}") {
+        transitive false
+    }
 }
 
 jar {
@@ -116,30 +157,20 @@ jar {
 
     manifest {
         attributes([
-            "Specification-Title"     : "unnamedmod",
-            "Specification-Vendor"    : "unnameddev",
+            "Specification-Title"     : "${mod.id}",
+            "Specification-Vendor"    : "${mod.group}",
             "Specification-Version"   : "1",
-            "Implementation-Title"    : project.name,
-            "Implementation-Version"  : "${version}",
-            "Implementation-Vendor"   : "unnameddev",
+            "Implementation-Title"    : "${mod.id}",
+            "Implementation-Vendor"   : "${mod.group}",
+            "Implementation-Version"  : "${mod.version}",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-            "MixinConnector"          : "com.example.examplemod.core.MixinConnector"
+            "MixinConnector"          : "${mod.root}.core.MixinConnector"
         ]
         )
     }
 }
 
 jar.finalizedBy('reobfJar')
-
-modutil {
-    shade('net.shadew.util', 'com.example.examplemod.internal.net.shadew.util')
-
-    updateJson file('versioninfo/update.json')
-    markdownChangelog file('versioninfo/latest_changelog.md')
-    markdownChangelog file("versioninfo/${version}_changelog.md")
-
-    changelogJson file("$rootDir/changelog.json")
-}
 
 publishing {
     publications {

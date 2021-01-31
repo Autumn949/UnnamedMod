@@ -1,25 +1,11 @@
 {
   "variants": {
-    "age=0": {
-      "model": "unnamedmod:block/apple_fruit_1"
-    },
-    "age=1": {
-      "model": "unnamedmod:block/apple_fruit_2"
-    },
-    "age=2": {
-      "model": "unnamedmod:block/apple_fruit_3"
-    },
-    "age=3": {
-      "model": "unnamedmod:block/apple_fruit_fallen"
-    },
-    "age=4": {
-      "model": "unnamedmod:block/apple_fruit_rotting_1"
-    },
-    "age=5": {
-      "model": "unnamedmod:block/apple_fruit_rotting_2"
-    },
-    "age=6": {
-      "model": "unnamedmod:block/apple_fruit_rotting_2"
-    }
+    "age=0": { "model": "unnamedmod:block/apple_stage_1" },
+    "age=1": { "model": "unnamedmod:block/apple_stage_2" },
+    "age=2": { "model": "unnamedmod:block/apple_stage_3" },
+    "age=3": { "model": "unnamedmod:block/apple_fallen" },
+    "age=4": { "model": "unnamedmod:block/apple_rotting_1" },
+    "age=5": { "model": "unnamedmod:block/apple_rotting_2" },
+    "age=6": { "model": "unnamedmod:block/apple_rotting_2" }
   }
 }

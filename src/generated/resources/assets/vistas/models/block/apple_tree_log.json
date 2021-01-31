@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "unnamedmod:block/apple_tree_log_top",
-    "side": "unnamedmod:block/apple_tree_log"
+    "end": "vistas:block/apple_tree_log_top",
+    "side": "vistas:block/apple_tree_log"
   }
 }

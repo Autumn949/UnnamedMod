@@ -1,7 +1,7 @@
 package dev.unnamed.vnv.common.blocks;
 
 import com.google.common.collect.Lists;
-import dev.unnamed.vnv.common.Vnv;
+import dev.unnamed.vnv.common.ValleysNVistas;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -27,13 +27,13 @@ public abstract class VnvBlocks {
     public static final Block FLOWERING_APPLE_TREE_LEAVES = floweringLeaves("flowering_apple_tree_leaves");
 
     public static final Block APPLE_TREE_PLANKS = planks("apple_tree_planks", MaterialColor.WOOD);
-    public static final Block APPLE_TREE_SLAB = planksSlab("apple_tree_slab", MaterialColor.WOOD);
-    public static final Block APPLE_TREE_STAIRS = stairs("apple_tree_stairs", MaterialColor.WOOD);
+    public static final Block APPLE_TREE_SLAB = woodenSlab("apple_tree_slab", MaterialColor.WOOD);
+    public static final Block APPLE_TREE_STAIRS = woodenStairs("apple_tree_stairs", MaterialColor.WOOD);
 
-    public static final Block APPLE_TREE_FENCE = fence("apple_tree_fence", MaterialColor.WOOD);
+    public static final Block APPLE_TREE_FENCE = woodenFence("apple_tree_fence", MaterialColor.WOOD);
     public static final Block APPLE_TREE_FENCE_GATE = fenceGate("apple_tree_fence_gate", MaterialColor.WOOD);
-    public static final Block APPLE_DOOR = door("apple_tree_door", MaterialColor.WOOD);
-    public static final Block APPLE_TRAP_DOOR = trapDoor("apple_tree_trap_door", MaterialColor.WOOD);
+    public static final Block APPLE_TREE_DOOR = door("apple_tree_door", MaterialColor.WOOD);
+    public static final Block APPLE_TREE_TRAPDOOR = trapDoor("apple_tree_trapdoor", MaterialColor.WOOD);
 
     public static final Block APPLE = apple("apple");
     public static final Block MUSHROOM_FAN = mushroomFan("mushroom_fan");
@@ -68,7 +68,7 @@ public abstract class VnvBlocks {
     //
 
     private static <T extends Block> T block(String id, T block) {
-        block.setRegistryName(Vnv.id(id));
+        block.setRegistryName(ValleysNVistas.id(id));
         REGISTRY.add(block);
         return block;
     }
@@ -111,7 +111,7 @@ public abstract class VnvBlocks {
         ));
     }
 
-    private static SlabBlock planksSlab(String id, MaterialColor color) {
+    private static SlabBlock woodenSlab(String id, MaterialColor color) {
         return block(id, new SlabBlock(
             AbstractBlock.Properties.create(Material.WOOD, color)
                                     .sound(SoundType.WOOD)
@@ -120,7 +120,7 @@ public abstract class VnvBlocks {
         ));
     }
 
-    private static FenceBlock fence(String id, MaterialColor color) {
+    private static FenceBlock woodenFence(String id, MaterialColor color) {
         return block(id, new FenceBlock(
             AbstractBlock.Properties.create(Material.WOOD, color)
                                     .sound(SoundType.WOOD)
@@ -138,7 +138,7 @@ public abstract class VnvBlocks {
         ));
     }
 
-    private static StairsBlock stairs(String id, MaterialColor color) {
+    private static StairsBlock woodenStairs(String id, MaterialColor color) {
         return block(id, new SimpleStairsBlock(
             AbstractBlock.Properties.create(Material.WOOD, color)
                                     .sound(SoundType.WOOD)

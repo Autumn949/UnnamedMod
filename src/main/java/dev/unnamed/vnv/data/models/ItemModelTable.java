@@ -2,7 +2,6 @@ package dev.unnamed.vnv.data.models;
 
 import dev.unnamed.vnv.common.blocks.VnvBlocks;
 import dev.unnamed.vnv.data.models.modelgen.IModelGen;
-import dev.unnamed.vnv.data.models.modelgen.InheritingModelGen;
 import net.minecraft.item.Item;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
@@ -10,26 +9,25 @@ import net.minecraft.util.ResourceLocation;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
+import static dev.unnamed.vnv.data.models.modelgen.InheritingModelGen.*;
+
 public final class ItemModelTable {
     private static BiConsumer<Item, IModelGen> consumer;
 
     public static void registerItemModels(BiConsumer<Item, IModelGen> c) {
         consumer = c;
 
-        //
-        //APPLE BLOCKS
-        //
-        register(VnvBlocks.APPLE_TREE_LOG, item -> InheritingModelGen.inherit(name(item, "block/%s")));
-        register(VnvBlocks.APPLE_TREE_LEAVES, item -> InheritingModelGen.inherit(name(item, "block/%s")));
-        register(VnvBlocks.APPLE_TREE_PLANKS, item -> InheritingModelGen.inherit(name(item, "block/%s")));
-        register(VnvBlocks.APPLE_TREE_SLAB, item -> InheritingModelGen.inherit(name(item, "block/%s")));
-        register(VnvBlocks.APPLE_TREE_FENCE, item -> InheritingModelGen.inherit(name(item, "block/%s_inventory")));
-        register(VnvBlocks.APPLE_TREE_STAIRS, item -> InheritingModelGen.inherit(name(item, "block/%s")));
+        register(VnvBlocks.APPLE_TREE_LOG, item -> inherit(name(item, "block/%s")));
+        register(VnvBlocks.APPLE_TREE_LEAVES, item -> inherit(name(item, "block/%s")));
+        register(VnvBlocks.FLOWERING_APPLE_TREE_LEAVES, item -> inherit(name(item, "block/%s")));
 
-        //
-        //FOREST BLOCKS
-        //
-        register(VnvBlocks.MUD, item -> InheritingModelGen.inherit(name(item, "block/%s")));
+        register(VnvBlocks.APPLE_TREE_PLANKS, item -> inherit(name(item, "block/%s")));
+        register(VnvBlocks.APPLE_TREE_SLAB, item -> inherit(name(item, "block/%s")));
+        register(VnvBlocks.APPLE_TREE_STAIRS, item -> inherit(name(item, "block/%s")));
+
+        register(VnvBlocks.APPLE_TREE_FENCE, item -> fenceInventory(name(item, "block/%s_planks", "_fence")));
+
+        register(VnvBlocks.MUD, item -> inherit(name(item, "block/%s")));
     }
 
 

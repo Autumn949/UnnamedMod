@@ -1,6 +1,6 @@
 package dev.unnamed.vnv.data.tags;
 
-import dev.unnamed.vnv.common.Vnv;
+import dev.unnamed.vnv.common.ValleysNVistas;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.TagsProvider;
 import net.minecraft.fluid.Fluid;
@@ -13,7 +13,7 @@ import java.nio.file.Path;
 public class VnvFluidTagsProvider extends TagsProvider<Fluid> {
     @SuppressWarnings("deprecation") // We need Registry.FLUID. Sorry Forge...
     public VnvFluidTagsProvider(DataGenerator gen, ExistingFileHelper helper) {
-        super(gen, Registry.FLUID, Vnv.ID, helper);
+        super(gen, Registry.FLUID, ValleysNVistas.ID, helper);
     }
 
     @Override

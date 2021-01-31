@@ -18,21 +18,17 @@ public final class BlockStateTable {
 
     public static void registerBlockStates(BiConsumer<Block, IBlockStateGen> c) {
         consumer = c;
-        //
-        //APPLE BLOCKS
-        //
-        //TODO: Add model generator for gates and add wooden fence gate here and to ItemModelTable
+
         register(VnvBlocks.APPLE_TREE_LOG, block -> rotatedPillar(name(block, "block/%s"), cubeColumn(name(block, "block/%s_top"), name(block, "block/%s"))));
         register(VnvBlocks.APPLE_TREE_LEAVES, block -> simple(name(block, "block/%s"), leaves(name(block, "block/%s"))));
+        register(VnvBlocks.FLOWERING_APPLE_TREE_LEAVES, block -> simple(name(block, "block/%s"), layeredLeaves(name(block, "block/%s"), name(block, "block/%s_overlay"))));
+
         register(VnvBlocks.APPLE_TREE_PLANKS, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
-        register(VnvBlocks.APPLE_TREE_SLAB, block -> woodenSlab(name(block, "block/%s", "_slab"), name(block, "block/apple_planks"), 1));
-        register(VnvBlocks.APPLE_TREE_FENCE, block -> fence(name(block, "block/%s"), name(block, "block/apple_planks")));
-        register(VnvBlocks.APPLE_TREE_STAIRS, block -> woodenStairs(name(block, "block/%s", "_stairs"), name(block, "block/apple_planks"), 1));
+        register(VnvBlocks.APPLE_TREE_SLAB, block -> woodenSlab(name(block, "block/%s", "_slab"), name(block, "block/%s_planks", "_slab"), 1));
+        register(VnvBlocks.APPLE_TREE_STAIRS, block -> woodenStairs(name(block, "block/%s", "_stairs"), name(block, "block/%s_planks", "_stairs"), 1));
 
+        register(VnvBlocks.APPLE_TREE_FENCE, block -> fence(name(block, "block/%s"), name(block, "block/%s_planks", "_fence")));
 
-        //
-        //FOREST BLOCKS
-        //
         register(VnvBlocks.MUD, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
     }
 
@@ -197,70 +193,6 @@ public final class BlockStateTable {
         return gen;
     }
 
-    private static IBlockStateGen stepRandomized(String name, int... weights) {
-        ModelInfo[] innerL = new ModelInfo[weights.length];
-        ModelInfo[] outerL = new ModelInfo[weights.length];
-        ModelInfo[] innerR = new ModelInfo[weights.length];
-        ModelInfo[] outerR = new ModelInfo[weights.length];
-        ModelInfo[] stairs = new ModelInfo[weights.length];
-        boolean[] innerM = new boolean[weights.length];
-        boolean[] outerM = new boolean[weights.length];
-        boolean[] stairsM = new boolean[weights.length];
-
-        VariantsBlockStateGen gen = VariantsBlockStateGen.variants();
-        int y = 270;
-        for (Direction dir : Direction.Plane.HORIZONTAL) {
-            for (Half half : Half.values()) {
-                int x = half == Half.TOP ? 180 : 0;
-                String state = String.format("facing=%s,half=%s", dir.getString(), half.getString());
-
-                for (int i = 0; i < innerL.length; i++) {
-                    String in = name + (i == 0 ? "_step_inner" : "_step_inner_alt_" + i);
-                    String on = name + (i == 0 ? "_step_outer" : "_step_outer_alt_" + i);
-                    String sn = name + (i == 0 ? "_step" : "_step_alt_" + i);
-                    String tn = name + (i == 0 ? "" : "_alt_" + i);
-
-                    int yp = y == 0 ? 270 : y - 90;
-                    int yn = y == 270 ? 0 : y + 90;
-
-                    innerL[i] = ModelInfo.create(in, innerM[i] ? null : stepInner(tn))
-                                         .rotate(x, x == 180 ? y : yp)
-                                         .uvlock(true)
-                                         .weight(weights[i]);
-                    outerL[i] = ModelInfo.create(on, outerM[i] ? null : stepOuter(tn))
-                                         .rotate(x, x == 180 ? y : yp)
-                                         .uvlock(true)
-                                         .weight(weights[i]);
-                    innerR[i] = ModelInfo.create(in)
-                                         .rotate(x, x == 180 ? yn : y)
-                                         .uvlock(true)
-                                         .weight(weights[i]);
-                    outerR[i] = ModelInfo.create(on)
-                                         .rotate(x, x == 180 ? yn : y)
-                                         .uvlock(true)
-                                         .weight(weights[i]);
-                    stairs[i] = ModelInfo.create(sn, stairsM[i] ? null : step(tn))
-                                         .rotate(x, y)
-                                         .uvlock(true)
-                                         .weight(weights[i]);
-
-                    innerM[i] = true;
-                    outerM[i] = true;
-                    stairsM[i] = true;
-                }
-
-                gen.variant(state + ",shape=straight", stairs);
-                gen.variant(state + ",shape=inner_left", innerL);
-                gen.variant(state + ",shape=inner_right", innerR);
-                gen.variant(state + ",shape=outer_left", outerL);
-                gen.variant(state + ",shape=outer_right", outerR);
-            }
-            if (y == 270) y = 0;
-            else y += 90;
-        }
-        return gen;
-    }
-
     private static IBlockStateGen woodenSlab(String modelName, String name, int... weights) {
         ModelInfo[] lo = new ModelInfo[weights.length];
         ModelInfo[] hi = new ModelInfo[weights.length];
@@ -323,70 +255,6 @@ public final class BlockStateTable {
                                          .uvlock(true)
                                          .weight(weights[i]);
                     stairs[i] = ModelInfo.create(sn, stairsM[i] ? null : stairs(tn))
-                                         .rotate(x, y)
-                                         .uvlock(true)
-                                         .weight(weights[i]);
-
-                    innerM[i] = true;
-                    outerM[i] = true;
-                    stairsM[i] = true;
-                }
-
-                gen.variant(state + ",shape=straight", stairs);
-                gen.variant(state + ",shape=inner_left", innerL);
-                gen.variant(state + ",shape=inner_right", innerR);
-                gen.variant(state + ",shape=outer_left", outerL);
-                gen.variant(state + ",shape=outer_right", outerR);
-            }
-            if (y == 270) y = 0;
-            else y += 90;
-        }
-        return gen;
-    }
-
-    private static IBlockStateGen woodenStep(String modelName, String name, int... weights) {
-        ModelInfo[] innerL = new ModelInfo[weights.length];
-        ModelInfo[] outerL = new ModelInfo[weights.length];
-        ModelInfo[] innerR = new ModelInfo[weights.length];
-        ModelInfo[] outerR = new ModelInfo[weights.length];
-        ModelInfo[] stairs = new ModelInfo[weights.length];
-        boolean[] innerM = new boolean[weights.length];
-        boolean[] outerM = new boolean[weights.length];
-        boolean[] stairsM = new boolean[weights.length];
-
-        VariantsBlockStateGen gen = VariantsBlockStateGen.variants();
-        int y = 270;
-        for (Direction dir : Direction.Plane.HORIZONTAL) {
-            for (Half half : Half.values()) {
-                int x = half == Half.TOP ? 180 : 0;
-                String state = String.format("facing=%s,half=%s", dir.getString(), half.getString());
-
-                for (int i = 0; i < innerL.length; i++) {
-                    String in = modelName + (i == 0 ? "_step_inner" : "_step_inner_alt_" + i);
-                    String on = modelName + (i == 0 ? "_step_outer" : "_step_outer_alt_" + i);
-                    String sn = modelName + (i == 0 ? "_step" : "_step_alt_" + i);
-                    String tn = name + (i == 0 ? "" : "_alt_" + i);
-
-                    int yp = y == 0 ? 270 : y - 90;
-                    int yn = y == 270 ? 0 : y + 90;
-
-                    innerL[i] = ModelInfo.create(in, innerM[i] ? null : stepInner(tn))
-                                         .rotate(x, x == 180 ? y : yp)
-                                         .uvlock(true)
-                                         .weight(weights[i]);
-                    outerL[i] = ModelInfo.create(on, outerM[i] ? null : stepOuter(tn))
-                                         .rotate(x, x == 180 ? y : yp)
-                                         .uvlock(true)
-                                         .weight(weights[i]);
-                    innerR[i] = ModelInfo.create(in)
-                                         .rotate(x, x == 180 ? yn : y)
-                                         .uvlock(true)
-                                         .weight(weights[i]);
-                    outerR[i] = ModelInfo.create(on)
-                                         .rotate(x, x == 180 ? yn : y)
-                                         .uvlock(true)
-                                         .weight(weights[i]);
-                    stairs[i] = ModelInfo.create(sn, stairsM[i] ? null : step(tn))
                                          .rotate(x, y)
                                          .uvlock(true)
                                          .weight(weights[i]);

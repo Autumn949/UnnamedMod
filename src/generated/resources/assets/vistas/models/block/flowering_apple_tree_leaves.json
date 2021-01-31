@@ -1,0 +1,7 @@
+{
+  "parent": "vistas:block/layered_leaves",
+  "textures": {
+    "all": "vistas:block/flowering_apple_tree_leaves",
+    "overlay": "vistas:block/flowering_apple_tree_leaves_overlay"
+  }
+}

@@ -1,21 +1,21 @@
 package dev.unnamed.vnv;
 
-import dev.unnamed.vnv.client.VnvClient;
-import dev.unnamed.vnv.common.Vnv;
+import dev.unnamed.vnv.client.ValleysNVistasClient;
+import dev.unnamed.vnv.common.ValleysNVistas;
 import dev.unnamed.vnv.data.DataGenerationHandler;
-import dev.unnamed.vnv.server.VnvServer;
+import dev.unnamed.vnv.server.ValleysNVistasServer;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(Vnv.ID)
+@Mod(ValleysNVistas.ID)
 public class VnvMod {
     public VnvMod() {
         DistExecutor.safeRunForDist(
-            () -> VnvClient::new,
-            () -> VnvServer::new
+            () -> ValleysNVistasClient::new,
+            () -> ValleysNVistasServer::new
         );
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -23,14 +23,14 @@ public class VnvMod {
         FMLJavaModLoadingContext.get().getModEventBus().register(new RegistryHandler());
         FMLJavaModLoadingContext.get().getModEventBus().register(new DataGenerationHandler());
 
-        Vnv.getInstance().preInit();
+        ValleysNVistas.getInstance().preInit();
     }
 
     private void setup(FMLCommonSetupEvent event) {
-        Vnv.getInstance().init();
+        ValleysNVistas.getInstance().init();
     }
 
     private void complete(FMLLoadCompleteEvent event) {
-        Vnv.getInstance().postInit();
+        ValleysNVistas.getInstance().postInit();
     }
 }

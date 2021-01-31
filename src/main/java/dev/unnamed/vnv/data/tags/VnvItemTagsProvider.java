@@ -1,6 +1,6 @@
 package dev.unnamed.vnv.data.tags;
 
-import dev.unnamed.vnv.common.Vnv;
+import dev.unnamed.vnv.common.ValleysNVistas;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.TagsProvider;
@@ -20,15 +20,20 @@ public class VnvItemTagsProvider extends TagsProvider<Item> {
 
     @SuppressWarnings("deprecation") // We need Registry.ITEM. Sorry Forge...
     public VnvItemTagsProvider(DataGenerator gen, VnvBlockTagsProvider blockTags, ExistingFileHelper helper) {
-        super(gen, Registry.ITEM, Vnv.ID, helper);
+        super(gen, Registry.ITEM, ValleysNVistas.ID, helper);
         this.builderGetter = blockTags::getBuilder;
     }
 
     @Override
     protected void registerTags() {
         copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
-        copy(BlockTags.LEAVES,ItemTags.LEAVES);
-        copy(BlockTags.WOODEN_FENCES,ItemTags.WOODEN_FENCES);
+        copy(BlockTags.LEAVES, ItemTags.LEAVES);
+        copy(BlockTags.PLANKS, ItemTags.PLANKS);
+        copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
+        copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
+        copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
+        copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
+        copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
     }
 
 

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "vistas:apple_tree_planks"
+    }
+  },
+  "result": {
+    "item": "vistas:apple_tree_slab",
+    "count": 6
+  }
+}
