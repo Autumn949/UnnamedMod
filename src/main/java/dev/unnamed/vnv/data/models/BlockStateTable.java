@@ -32,7 +32,8 @@ public final class BlockStateTable {
         register(VnvBlocks.APPLE_TREE_FENCE, block -> fence(name(block, "block/%s"), name(block, "block/%s_planks", "_fence")));
         register(VnvBlocks.APPLE_TREE_DOOR, block -> door(name(block, "block/%s")));
 
-        register(VnvBlocks.MUD, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(VnvBlocks.MUD_WET, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(VnvBlocks.MUD_DRY, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
     }
 
     private static IBlockStateGen simple(String name, IModelGen model) {

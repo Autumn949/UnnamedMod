@@ -35,7 +35,8 @@ public abstract class VnvItems {
     public static final Item APPLE_TREE_DOOR = block(VnvBlocks.APPLE_TREE_DOOR, ItemGroup.REDSTONE);
     public static final Item APPLE_TREE_TRAPDOOR = block(VnvBlocks.APPLE_TREE_TRAPDOOR, ItemGroup.REDSTONE);
 
-    public static final Item MUD = block(VnvBlocks.MUD, ItemGroup.BUILDING_BLOCKS);
+    public static final Item MUD_WET = block(VnvBlocks.MUD_WET, ItemGroup.BUILDING_BLOCKS);
+    public static final Item MUD_DRY = block(VnvBlocks.MUD_DRY, ItemGroup.BUILDING_BLOCKS);
     public static final Item MUSHROOM_FAN = block(VnvBlocks.MUSHROOM_FAN, ItemGroup.DECORATIONS);
 
 

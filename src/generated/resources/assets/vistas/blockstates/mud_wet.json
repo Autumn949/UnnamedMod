@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "vistas:block/mud"
+      "model": "vistas:block/mud_wet"
     }
   }
 }

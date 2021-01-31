@@ -58,7 +58,8 @@ public class VnvBlockLootTables extends BlockLootTables {
         // TODO: UPDATE TO DROP APPLE WHEN FULLY GROWN, ROTTEN APPLE WHEN OLD AND GROWTH STAGE WHEN SILKED
         registerSilkTouch(VnvBlocks.APPLE);
 
-        registerDropSelfLootTable(VnvBlocks.MUD);
+        registerDropSelfLootTable(VnvBlocks.MUD_WET);
+        registerDropSelfLootTable(VnvBlocks.MUD_DRY);
         registerDropSelfLootTable(VnvBlocks.MUSHROOM_FAN);
     }
 

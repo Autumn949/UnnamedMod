@@ -38,7 +38,8 @@ public abstract class VnvBlocks {
     public static final Block APPLE = apple("apple");
     public static final Block MUSHROOM_FAN = mushroomFan("mushroom_fan");
 
-    public static final MudBlock MUD = mud("mud");
+    public static final Block MUD_DRY = mud("mud_dry");
+    public static final Block MUD_WET = mudwet("mud_wet");
 
 
     //
@@ -187,9 +188,18 @@ public abstract class VnvBlocks {
                                     .sound(SoundType.GROUND)
                                     .hardnessAndResistance(1)
                                     .harvestTool(ToolType.SHOVEL)
-                                    .velocityMultiplier(0.6f)
         ));
     }
+    private static Block mudwet(String id) {
+        return block(id, new Block(
+                AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT)
+                        .sound(SoundType.GROUND)
+                        .hardnessAndResistance(1)
+                        .harvestTool(ToolType.SHOVEL)
+                        .velocityMultiplier(0.6f)
+        ));
+    }
+
 
     private static MushroomFanBlock mushroomFan(String id) {
         return block(id, new MushroomFanBlock(

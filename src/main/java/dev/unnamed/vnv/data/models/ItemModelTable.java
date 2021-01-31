@@ -29,7 +29,9 @@ public final class ItemModelTable {
         register(VnvBlocks.APPLE_TREE_FENCE, item -> fenceInventory(name(item, "block/%s_planks", "_fence")));
         register(VnvBlocks.APPLE_TREE_DOOR, item -> generated(name(item, "item/%s")));
 
-        register(VnvBlocks.MUD, item -> inherit(name(item, "block/%s")));
+        register(VnvBlocks.MUD_WET, item -> inherit(name(item, "block/%s")));
+        register(VnvBlocks.MUD_DRY, item -> inherit(name(item, "block/%s")));
+
 
         register(VnvItems.ROTTEN_APPLE, item -> generated(name(item, "item/%s")));
     }
