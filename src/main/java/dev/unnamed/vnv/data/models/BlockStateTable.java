@@ -4,6 +4,8 @@ import dev.unnamed.vnv.common.blocks.VnvBlocks;
 import dev.unnamed.vnv.data.models.modelgen.IModelGen;
 import dev.unnamed.vnv.data.models.stategen.*;
 import net.minecraft.block.Block;
+import net.minecraft.state.properties.DoorHingeSide;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.state.properties.Half;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -28,6 +30,7 @@ public final class BlockStateTable {
         register(VnvBlocks.APPLE_TREE_STAIRS, block -> woodenStairs(name(block, "block/%s", "_stairs"), name(block, "block/%s_planks", "_stairs"), 1));
 
         register(VnvBlocks.APPLE_TREE_FENCE, block -> fence(name(block, "block/%s"), name(block, "block/%s_planks", "_fence")));
+        register(VnvBlocks.APPLE_TREE_DOOR, block -> door(name(block, "block/%s")));
 
         register(VnvBlocks.MUD, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
     }
@@ -315,6 +318,57 @@ public final class BlockStateTable {
         return VariantsBlockStateGen.variants("axis=y", ModelInfo.create(name, model).rotate(0, 0))
                                     .variant("axis=z", ModelInfo.create(name, model).rotate(90, 0))
                                     .variant("axis=x", ModelInfo.create(name, model).rotate(90, 90));
+    }
+
+    private static IBlockStateGen door(String name) {
+        VariantsBlockStateGen gen = VariantsBlockStateGen.variants();
+        String bottomTexture = name + "_bottom";
+        String topTexture = name + "_top";
+
+        for (Direction facing : Direction.Plane.HORIZONTAL) {
+            int baseRot = 0;
+
+            if (facing == Direction.SOUTH) baseRot = 90;
+            if (facing == Direction.WEST) baseRot = 180;
+            if (facing == Direction.NORTH) baseRot = 270;
+
+            for (DoubleBlockHalf half : DoubleBlockHalf.values()) {
+                for (DoorHingeSide hinge : DoorHingeSide.values()) {
+                    boolean right = hinge == DoorHingeSide.RIGHT;
+
+                    for (int i = 0; i < 2; i++) {
+                        boolean open = (i & 1) == 0;
+
+                        int rotDelta = 0;
+                        if (open) rotDelta = right ? -90 : 90;
+
+                        int rotation = (baseRot + rotDelta) % 360;
+                        if (rotation < 0) rotation += 360;
+
+                        String variant = "facing=" + facing.getString() + ","
+                                             + "half=" + half.getString() + ","
+                                             + "hinge=" + hinge.getString() + ","
+                                             + "open=" + open;
+
+                        boolean bottom = half == DoubleBlockHalf.LOWER;
+
+                        boolean shouldHinge = right ^ open;
+
+                        String model = name + (bottom ? "_bottom" : "_top") + (shouldHinge ? "_hinge" : "");
+
+                        IModelGen modelGen = bottom
+                                             ? doorBottom(bottomTexture, shouldHinge)
+                                             : doorTop(topTexture, bottomTexture, shouldHinge);
+
+                        ModelInfo info = ModelInfo.create(model, modelGen)
+                                                  .rotate(0, rotation);
+                        gen.variant(variant, info);
+                    }
+                }
+            }
+        }
+
+        return gen;
     }
 
     private static void register(Block block, Function<Block, IBlockStateGen> genFactory) {

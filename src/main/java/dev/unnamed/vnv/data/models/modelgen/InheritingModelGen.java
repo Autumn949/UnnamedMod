@@ -243,4 +243,15 @@ public class InheritingModelGen implements IModelGen {
         return new InheritingModelGen("block/wall_inventory")
                    .texture("wall", texture);
     }
+
+    public static InheritingModelGen doorTop(String top, String bottom, boolean rightHinge) {
+        return new InheritingModelGen("block/door_top" + (rightHinge ? "_rh" : ""))
+                   .texture("top", top)
+                   .texture("bottom", bottom);
+    }
+
+    public static InheritingModelGen doorBottom(String bottom, boolean rightHinge) {
+        return new InheritingModelGen("block/door_bottom" + (rightHinge ? "_rh" : ""))
+                   .texture("bottom", bottom);
+    }
 }

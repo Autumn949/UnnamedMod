@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top",
+  "textures": {
+    "top": "vistas:block/apple_tree_door_top",
+    "bottom": "vistas:block/apple_tree_door_bottom"
+  }
+}

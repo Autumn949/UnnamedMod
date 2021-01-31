@@ -51,11 +51,11 @@ public class VnvBlockLootTables extends BlockLootTables {
 
         registerDropSelfLootTable(VnvBlocks.APPLE_TREE_FENCE);
         registerDropSelfLootTable(VnvBlocks.APPLE_TREE_FENCE_GATE);
-        registerDropSelfLootTable(VnvBlocks.APPLE_TREE_DOOR);
+        registerLootTable(VnvBlocks.APPLE_TREE_DOOR, BlockLootTables::addDoorDrop);
         registerDropSelfLootTable(VnvBlocks.APPLE_TREE_TRAPDOOR);
 
 
-        // TODO: UPDATE TO DROP APPLE WHEN FULLY GROWN ROTTEN APPLE WHEN OLD AND GROWTH STAGE WHEN SILKED
+        // TODO: UPDATE TO DROP APPLE WHEN FULLY GROWN, ROTTEN APPLE WHEN OLD AND GROWTH STAGE WHEN SILKED
         registerSilkTouch(VnvBlocks.APPLE);
 
         registerDropSelfLootTable(VnvBlocks.MUD);
