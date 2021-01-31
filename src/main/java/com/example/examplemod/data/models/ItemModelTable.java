@@ -23,13 +23,20 @@ public final class ItemModelTable {
     public static void registerItemModels(BiConsumer<Item, IModelGen> c) {
         consumer = c;
 
+        //
+        //APPLE BLOCKS
+        //
         register(ModBlocks.APPLE_TREE_LOG, item -> inherit(name(item, "block/%s")));
         register(ModBlocks.APPLE_LEAVES,item->inherit(name(item,"block/%s")));
         register(ModBlocks.APPLE_PLANKS, item->inherit(name(item,"block/%s")));
         register(ModBlocks.APPLE_SLAB, item->inherit(name(item,"block/%s")));
-        register(ModBlocks.APPLE_FENCE,item->inherit(name(item,"block/%s")));
+        register(ModBlocks.APPLE_FENCE,item->inherit(name(item,"block/%s_inventory")));
         register(ModBlocks.APPLE_STAIRS,item->inherit(name(item,"block/%s")));
 
+        //
+        //FOREST BLOCKS
+        //
+        register(ModBlocks.MUD_BLOCK,item -> inherit(name(item,"block/%s")));
     }
 
 

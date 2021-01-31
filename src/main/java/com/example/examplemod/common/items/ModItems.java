@@ -3,12 +3,13 @@ package com.example.examplemod.common.items;
 import com.example.examplemod.common.UnnamedMod;
 import com.example.examplemod.common.blocks.ModBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.IItemProvider;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -38,12 +39,25 @@ public abstract class ModItems {
     public static final Item APPLE = block(ModBlocks.APPLE,ItemGroup.FOOD);
     public static final Item APPLE_DOOR = block(ModBlocks.APPLE_DOOR,ItemGroup.BUILDING_BLOCKS);
     public static final Item APPLE_TRAP_DOOR=block(ModBlocks.APPLE_TRAP_DOOR,ItemGroup.BUILDING_BLOCKS);
+    public static final Item ROTTEN_APPLE = item("rotten_apple", new Item((new Item.Properties()).group(ItemGroup.FOOD).food(ModFoods.ROTTEN_APPLE)));
+
+    //
+    //FOREST ITEMS
+    //
+    public static final Item MUD_BLOCK = block(ModBlocks.MUD_BLOCK,ItemGroup.BUILDING_BLOCKS);
+    public static final Item FAN_MUSHROOMS = block(ModBlocks.FAN_MUSHROOMS,ItemGroup.BUILDING_BLOCKS);
     //
     // REGISTRY
     //
 
     public static void register(IForgeRegistry<Item> registry) {
         REGISTRY.forEach(registry::register);
+        //
+        //REGISTER COMPOSTABLES
+        //
+        registerCompostable(0.65f,ROTTEN_APPLE);
+        registerCompostable(0.35f,APPLE_LEAVES);
+        registerCompostable(0.35f,APPLE_LEAVES_FLOWERABLE);
     }
 
     public static void setup() {
@@ -86,5 +100,8 @@ public abstract class ModItems {
 
     private static BlockItem block(Block block, ItemGroup group) {
         return block(block, new Item.Properties().group(group));
+    }
+    private static void registerCompostable(float p_220290_0_, IItemProvider p_220290_1_) {
+        ComposterBlock.CHANCES.put(p_220290_1_.asItem(), p_220290_0_);
     }
 }

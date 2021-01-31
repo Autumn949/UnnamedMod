@@ -42,6 +42,9 @@ public class ModBlockLootTables extends BlockLootTables {
     @Override
     protected void addTables() {
 
+        //
+        //APPLE BLOCKS
+        //
         registerDropSelfLootTable(ModBlocks.APPLE_TREE_LOG);
         registerLootTable(ModBlocks.APPLE_LEAVES, block-> droppingWithChancesAndSticks(block, Blocks.OAK_SAPLING,DEFAULT_SAPLING_DROP_RATES));
         registerDropSelfLootTable(ModBlocks.APPLE_PLANKS);
@@ -51,8 +54,17 @@ public class ModBlockLootTables extends BlockLootTables {
         registerDropSelfLootTable(ModBlocks.APPLE_STAIRS);
         registerDropSelfLootTable(ModBlocks.APPLE_DOOR);
         registerDropSelfLootTable(ModBlocks.APPLE_TRAP_DOOR);
+
+
         //TODO:UPDATE TO DROP APPLE WHEN FULLY GROWN ROTTEN APPLE WHEN OLD AND GROWTH STAGE WHEN SILKED
+
         registerSilkTouch(ModBlocks.APPLE);
+
+
+        //
+        //FOREST BLOCK
+        //
+        registerDropSelfLootTable(ModBlocks.MUD_BLOCK);
     }
 
 

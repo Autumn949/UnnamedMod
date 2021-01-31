@@ -44,7 +44,14 @@ public abstract class ModBlocks {
     public static final FruitBlock APPLE = apple("apple");
     public static final DoorBlock APPLE_DOOR = appledoor("apple_door");
     public static final TrapDoorBlock APPLE_TRAP_DOOR = appletrapdoor("apple_trap_door");
+    public static final MushroomFan FAN_MUSHROOMS = fanmushrooms("fan_mushrooms");
 
+
+    //
+    //FOREST BLOCKS
+    //
+
+    public static final Block MUD_BLOCK = mudblock("mud_block");
 
     //
     // REGISTRY
@@ -139,9 +146,16 @@ public abstract class ModBlocks {
 
     }
     private static DoorBlock appledoor(String id){
-        return block(id, new DoorBlock(AbstractBlock.Properties.create(Material.PLANTS,MaterialColor.GRASS).sound(SoundType.PLANT).hardnessAndResistance(0.5f).harvestTool(ToolType.AXE).nonOpaque()));
+        return block(id, new DoorBlock(AbstractBlock.Properties.create(Material.WOOD,MaterialColor.BROWN).sound(SoundType.WOOD).hardnessAndResistance(2f).harvestTool(ToolType.AXE).nonOpaque()));
     }
     private static TrapDoorBlock appletrapdoor(String id){
-        return block(id, new TrapDoorBlock(AbstractBlock.Properties.create(Material.PLANTS,MaterialColor.GRASS).sound(SoundType.PLANT).hardnessAndResistance(0.5f).harvestTool(ToolType.AXE).nonOpaque()));
+        return block(id, new TrapDoorBlock(AbstractBlock.Properties.create(Material.WOOD,MaterialColor.BROWN).sound(SoundType.WOOD).hardnessAndResistance(2f).harvestTool(ToolType.AXE).nonOpaque()));
+    }
+    private static Block mudblock(String id){
+        return block(id, new Block(AbstractBlock.Properties.create(Material.ORGANIC,MaterialColor.BROWN).sound(SoundType.PLANT).hardnessAndResistance(1f).harvestTool(ToolType.SHOVEL).slipperiness(1f)));
+    }
+
+    private static MushroomFan fanmushrooms(String id){
+        return block(id, new MushroomFan(AbstractBlock.Properties.create(Material.ORGANIC,MaterialColor.BROWN).sound(SoundType.PLANT).hardnessAndResistance(1f).harvestTool(ToolType.SHOVEL).slipperiness(1f)));
     }
 }

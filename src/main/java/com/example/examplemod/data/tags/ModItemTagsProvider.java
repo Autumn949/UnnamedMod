@@ -1,6 +1,7 @@
 package com.example.examplemod.data.tags;
 
 import com.example.examplemod.common.UnnamedMod;
+import com.example.examplemod.common.items.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.TagsProvider;
