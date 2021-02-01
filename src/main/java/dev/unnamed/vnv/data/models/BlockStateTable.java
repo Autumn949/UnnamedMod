@@ -34,6 +34,7 @@ public final class BlockStateTable {
 
         register(VnvBlocks.MUD_WET, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
         register(VnvBlocks.MUD_DRY, block -> simple(name(block, "block/%s"), cubeAll(name(block, "block/%s"))));
+        register(VnvBlocks.ROTTEN_WOOD, block->rotatedPillar(name(block,"block/%s"), cubeColumn(name(block, "block/%s_top"), name(block, "block/%s"))));
     }
 
     private static IBlockStateGen simple(String name, IModelGen model) {

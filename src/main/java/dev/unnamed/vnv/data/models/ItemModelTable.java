@@ -4,6 +4,7 @@ import dev.unnamed.vnv.common.blocks.VnvBlocks;
 import dev.unnamed.vnv.common.items.VnvItems;
 import dev.unnamed.vnv.data.models.modelgen.IModelGen;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
@@ -31,7 +32,7 @@ public final class ItemModelTable {
 
         register(VnvBlocks.MUD_WET, item -> inherit(name(item, "block/%s")));
         register(VnvBlocks.MUD_DRY, item -> inherit(name(item, "block/%s")));
-
+        register(VnvBlocks.MUSHROOM_FAN, item -> inherit(name(item,"block/%s")));
 
         register(VnvItems.ROTTEN_APPLE, item -> generated(name(item, "item/%s")));
     }

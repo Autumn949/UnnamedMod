@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "vistas:mud_wet"
+  },
+  "result": "vistas:mud_dry",
+  "experience": 0.0,
+  "cookingtime": 200
+}

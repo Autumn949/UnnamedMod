@@ -4,6 +4,7 @@ import dev.unnamed.vnv.common.ValleysNVistas;
 import dev.unnamed.vnv.common.blocks.VnvBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.ComposterBlock;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.*;
@@ -35,10 +36,21 @@ public abstract class VnvItems {
     public static final Item APPLE_TREE_DOOR = block(VnvBlocks.APPLE_TREE_DOOR, ItemGroup.REDSTONE);
     public static final Item APPLE_TREE_TRAPDOOR = block(VnvBlocks.APPLE_TREE_TRAPDOOR, ItemGroup.REDSTONE);
 
+    //Forest Items
     public static final Item MUD_WET = block(VnvBlocks.MUD_WET, ItemGroup.BUILDING_BLOCKS);
     public static final Item MUD_DRY = block(VnvBlocks.MUD_DRY, ItemGroup.BUILDING_BLOCKS);
     public static final Item MUSHROOM_FAN = block(VnvBlocks.MUSHROOM_FAN, ItemGroup.DECORATIONS);
+    public static final Item MOSS = block(VnvBlocks.MOSS, ItemGroup.DECORATIONS);
+    public static final Item LICHEN = block(VnvBlocks.LICHEN, ItemGroup.DECORATIONS);
 
+    //Mushroom
+    public static final Item MUSHROOM_LOG_RED = block(VnvBlocks.MUSHROOM_LOG_RED, ItemGroup.BUILDING_BLOCKS);
+    public static final Item MUSHROOM_LOG_BROWN = block(VnvBlocks.MUSHROOM_LOG_BROWN, ItemGroup.BUILDING_BLOCKS);
+    public static final Item MUSHROOM_CAP_RED = block(VnvBlocks.MUSHROOM_CAP_RED,ItemGroup.BUILDING_BLOCKS);
+    public static final Item MUSHROOM_CAP_BROWN = block(VnvBlocks.MUSHROOM_CAP_BROWN,ItemGroup.BUILDING_BLOCKS);
+
+    //JUNGLE
+    public static final Item PINEAPPLE_PLANT = block(VnvBlocks.PINEAPPLE_PLANT,ItemGroup.DECORATIONS);
 
     //
     // ITEMS

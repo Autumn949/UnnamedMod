@@ -1,10 +1,9 @@
 package dev.unnamed.vnv.common.blocks;
 
-
+import dev.unnamed.vnv.common.ValleysNVistas;
 import dev.unnamed.vnv.util.IsSolid;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -20,11 +19,18 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class MushroomFanBlock extends Block implements IWallAttachable {
-    public static final DirectionProperty DIRECTION;
-    public MushroomFanBlock(Properties p_i48440_1_) {
+public class MossBlock extends Block implements IWallAttachable {
+    public MossBlock(Properties p_i48440_1_) {
         super(p_i48440_1_);
         setDefaultState(stateContainer.getBaseState().with(DIRECTION, Direction.EAST));
+    }
+    public static final DirectionProperty DIRECTION = DirectionProperty.create("direction",Direction.EAST,Direction.NORTH,Direction.SOUTH,Direction.WEST);
+
+    //TODO:Make cube shapes match planar direction
+
+    @Override
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(DIRECTION);
     }
 
 
@@ -61,39 +67,25 @@ public class MushroomFanBlock extends Block implements IWallAttachable {
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(DIRECTION);
+    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {        switch(state.get(DIRECTION)){
+        case UP:
+            return SHAPES[0];
+
+        case DOWN:
+            return SHAPES[1];
+
+        case EAST:
+            return SHAPES[2];
+
+        case WEST:
+            return SHAPES[3];
+
+        case NORTH:
+            return SHAPES[4];
+
+        case SOUTH:
+            return SHAPES[5];
+
+    }        return null;
     }
-
-    static{
-       DIRECTION = HorizontalBlock.HORIZONTAL_FACING;
-    }
-
-
-
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
-        switch(state.get(DIRECTION)){
-            case UP:
-                return SHAPES[0];
-
-            case DOWN:
-                return SHAPES[1];
-
-            case EAST:
-                return SHAPES[2];
-
-            case WEST:
-                return SHAPES[3];
-
-            case NORTH:
-                return SHAPES[4];
-
-            case SOUTH:
-                return SHAPES[5];
-
-        }
-        return null;
-    }
-
 }

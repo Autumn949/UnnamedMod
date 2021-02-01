@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=z": {
+      "model": "vistas:block/rotten_wood",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "vistas:block/rotten_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "vistas:block/rotten_wood"
+    }
+  }
+}

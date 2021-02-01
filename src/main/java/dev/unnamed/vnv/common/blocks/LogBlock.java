@@ -26,4 +26,6 @@ public class LogBlock extends RotatedPillarBlock {
         }
         return state;
     }
+
+
 }

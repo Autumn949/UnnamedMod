@@ -11,8 +11,6 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -26,6 +24,7 @@ public abstract class VnvBlocks {
     // BLOCKS
     //
 
+    //APPLE BLOCKS
     public static final Block APPLE_TREE_LOG = log("apple_tree_log", MaterialColor.WOOD);
     public static final Block APPLE_TREE_LEAVES = leaves("apple_tree_leaves");
     public static final Block FLOWERING_APPLE_TREE_LEAVES = floweringLeaves("flowering_apple_tree_leaves");
@@ -40,12 +39,24 @@ public abstract class VnvBlocks {
     public static final Block APPLE_TREE_TRAPDOOR = trapDoor("apple_tree_trapdoor", MaterialColor.WOOD);
 
     public static final Block APPLE = apple("apple");
-    public static final Block MUSHROOM_FAN = mushroomFan("shelf_mushroom");
 
+
+    //FOREST BLOCKS
+    public static final Block MUSHROOM_FAN = mushroomFan("shelf_mushroom");
     public static final Block MUD_DRY = mud("mud_dry");
     public static final Block MUD_WET = mudwet("mud_wet");
+    public static final Block LICHEN = moss("lichen");
+    public static final Block MOSS = moss("moss");
+    public static final Block ROTTEN_WOOD = log("rotten_wood",MaterialColor.ADOBE);
 
+    //MUSHROOM
+    public static final Block MUSHROOM_LOG_RED = log("mushroom_log_red",MaterialColor.RED);
+    public static final Block MUSHROOM_LOG_BROWN = log("mushroom_log_brown",MaterialColor.BROWN);
+    public static final Block MUSHROOM_CAP_RED = log("mushroom_cap_red",MaterialColor.RED);
+    public static final Block MUSHROOM_CAP_BROWN = log("mushroom_cap_brown",MaterialColor.BROWN);
 
+    //JUNGLE
+    public static final Block PINEAPPLE_PLANT = pineapplePlant("pineapple_plant");
     //
     // REGISTRY
     //
@@ -210,7 +221,23 @@ public abstract class VnvBlocks {
         return block(id, new MushroomFanBlock(
             AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.BROWN)
                                     .sound(SoundType.PLANT)
-                                    .hardnessAndResistance(0)
+                                    .hardnessAndResistance(0).nonOpaque().noDrops()
+                //WARNING HAS DROPS
+                //TODO: FIX GEN TO CHECK FOR MANUAL DROPS
+        ));
+    }
+    private static MossBlock moss(String id){
+        return block(id, new MossBlock(
+                AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.BROWN)
+                        .sound(SoundType.PLANT)
+                        .hardnessAndResistance(0).nonOpaque()
+        ));
+    }
+    private static PineapplePlant pineapplePlant(String id){
+        return block(id, new PineapplePlant(
+                AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.BROWN)
+                        .sound(SoundType.PLANT)
+                        .hardnessAndResistance(0).nonOpaque()
         ));
     }
 }

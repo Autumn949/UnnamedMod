@@ -2,6 +2,7 @@ package dev.unnamed.vnv.data.loottables;
 
 import dev.unnamed.vnv.common.ValleysNVistas;
 import dev.unnamed.vnv.common.blocks.VnvBlocks;
+import dev.unnamed.vnv.common.items.VnvItems;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -60,7 +61,11 @@ public class VnvBlockLootTables extends BlockLootTables {
 
         registerDropSelfLootTable(VnvBlocks.MUD_WET);
         registerDropSelfLootTable(VnvBlocks.MUD_DRY);
-        registerDropping(VnvBlocks.MUSHROOM_FAN, Items.BROWN_MUSHROOM);
+
+        registerSilkTouch(VnvBlocks.MOSS);
+        registerSilkTouch(VnvBlocks.LICHEN);
+        registerSilkTouch(VnvBlocks.ROTTEN_WOOD);
+
     }
 
 
